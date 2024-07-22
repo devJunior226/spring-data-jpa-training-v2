@@ -2,19 +2,17 @@ package com.backend.jpa.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@Data // includes @Getter, @Setter and @AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
-public class Author {
-
-   @Id
-   @GeneratedValue
-   private Integer id;
+public class Author extends BaseEntity {
 
    @Column(name = "author_firstname", length = 35)
    private String firstName;
@@ -26,7 +24,6 @@ public class Author {
    private String email;
 
    private int age;
-
 
    /**
     * ManyToMany relationship setting up

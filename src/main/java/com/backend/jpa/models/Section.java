@@ -6,7 +6,7 @@ import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
-@EqualsAndHashCode
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

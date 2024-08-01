@@ -15,6 +15,8 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @SuperBuilder
+// Indicate that this class is a superclass that is mapped to a database table
+// Is to define common properties that will shared by multiple entities
 @MappedSuperclass
 public class BaseEntity {
 

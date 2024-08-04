@@ -2,6 +2,7 @@ package com.backend.jpa;
 
 import com.backend.jpa.models.Author;
 import com.backend.jpa.models.Video;
+import com.backend.jpa.models.specification.AuthorSpecification;
 import com.backend.jpa.repositories.AuthorRepository;
 import com.backend.jpa.repositories.VideoRepository;
 import com.github.javafaker.Faker;
@@ -9,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.domain.Specification;
 
 @SpringBootApplication
 public class SpringJpaApplication {
@@ -56,16 +58,23 @@ public class SpringJpaApplication {
 			//authorRepository.updateAllAuthorAges(34);
 
 			// find by named query
-			authorRepository.findByNamedQuery(22)
-				.forEach(System.out::println);
+			//authorRepository.findByNamedQuery(22)
+				//.forEach(System.out::println);
 
 
 			// update firstname
-			authorRepository.updateAuthorAgeByNamedQuery(100);
+			//authorRepository.updateAuthorAgeByNamedQuery(100);
+
+
+
+			// To consum our specification
+			Specification<Author> spec = Specification
+				.where(AuthorSpecification.hasAge(34))
+				.and(AuthorSpecification.firstNameLike("R"));
+			authorRepository.findAll(spec)
+				.forEach(System.out::println);
 
 		};
-
-
 	}
 }
 

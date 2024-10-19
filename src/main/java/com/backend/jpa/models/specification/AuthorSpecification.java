@@ -22,7 +22,6 @@ public class AuthorSpecification {
       };
    }
 
-
    // Fetch authors by firstname containing character
    public static Specification<Author> firstNameLike(String firstname) {
       return(

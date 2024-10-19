@@ -26,7 +26,7 @@ public class SpringJpaApplication {
 		VideoRepository videoRepository
 	) {
 		return args -> {
-			for (int i = 0; i < 50; i++) {
+			for (int i = 0; i < 10; i++) {
 				Faker faker = new Faker();
 
 				var author = Author.builder()
@@ -38,7 +38,7 @@ public class SpringJpaApplication {
 					//.email(faker.name().username() + "@dev.com")
 					.build();
 
-				//authorRepository.save(author);
+				authorRepository.save(author);
 			}
 
 			// Update author with id = 1

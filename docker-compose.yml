@@ -1,0 +1,35 @@
+services:
+  # First service
+  postgres-service:
+    container_name: postgresql-prod
+    image: postgres
+    environment:
+      POSTGRES_USER: username
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: docker_db_demo
+    ports:
+      - "1234:5432"
+    volumes:
+      - postgres:/var/lib/postgres/data
+    networks:
+      - jpa-net
+
+  # Second service
+  spring-boot-service:
+    container_name: jpa-demo
+    image: jpa/demo
+    ports:
+      - "8082:8080"
+    networks:
+      - jpa-net
+
+    # We say that the spring-boot-service wait for postgres-service
+    depends_on:
+      - postgres-service
+
+volumes:
+  postgres:
+
+networks:
+  jpa-net:
+    driver: bridge
